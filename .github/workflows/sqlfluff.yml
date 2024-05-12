@@ -21,5 +21,5 @@ jobs:
         uses: yuzutech/annotations-action@v0.3.0
         with:
           repo-token: "${{ secrets.GB_TOKEN }}"
-          title: "SQLFluff Lint"
+          title: "Lint Models"
           input: "./annotations.json"
