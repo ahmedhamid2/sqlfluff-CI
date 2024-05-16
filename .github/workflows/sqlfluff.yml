@@ -20,6 +20,6 @@ jobs:
       - name: Annotate
         uses: yuzutech/annotations-action@v0.3.0
         with:
-          repo-token: "${{ secrets.TOKEN }}"
+          repo-token: "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"
           title: "SQLFluff Lint"
           input: "./annotations.json"
