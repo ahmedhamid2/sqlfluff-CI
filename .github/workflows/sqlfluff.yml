@@ -20,6 +20,6 @@ jobs:
       - name: Annotate
         uses: yuzutech/annotations-action@v0.3.0
         with:
-          repo-token: "${{ secrets.TOKKEN }}"
+          repo-token: "${{ secrets.TOKEN }}"
           title: "Lint Models"
           input: "./annotations.json"
