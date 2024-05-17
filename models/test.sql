@@ -1,3 +1,3 @@
 select distinct one, two,
 three
-  FROM demo_table
+FROM demo_table
