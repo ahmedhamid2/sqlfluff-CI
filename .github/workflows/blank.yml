@@ -1,0 +1,23 @@
+name: SQLFluff
+
+on:
+  - pull_request
+
+jobs:
+  lint-models:
+    runs-on: self-hosted
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Install Python
+        uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.7"
+      - name: install sqlfluff
+        run: "pip install sqlfluff"
+
+      - name: Lint dbt models
+        id: sqlfluff_json
+        run: sqlfluff lint --dialect snowflake --format github-annotation --annotation-level failure --nofail  > annotations.json
+      - name: Create annotation for build error
+        run: echo "::error file=test.sql,line=1::Missing semicolon"
