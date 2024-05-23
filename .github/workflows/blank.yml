@@ -2,6 +2,8 @@ name: SQLFluff
 
 on:
   - pull_request
+permissions:
+  checks: write
 
 jobs:
   lint-models:
@@ -12,12 +14,17 @@ jobs:
       - name: Install Python
         uses: "actions/setup-python@v2"
         with:
-          python-version: "3.7"
+          python-version: "3.12"
       - name: install sqlfluff
         run: "pip install sqlfluff"
 
       - name: Lint dbt models
         id: sqlfluff_json
         run: sqlfluff lint --dialect snowflake --format github-annotation --annotation-level failure --nofail  > annotations.json
-      - name: Create annotation for build error
-        run: echo "::error file=test.sql,line=1::Missing semicolon"
+      - name: Annotate
+        uses: yuzutech/annotations-action@v0.3.0
+        with:
+          repo-token: "${{ secrets.TOKEN }}"
+          title: "SQLFluff Lint"
+          input: "/home/ahmed/Desktop/sqlfluff-ci/sqlfluff-CI/annotations.json"
+      
