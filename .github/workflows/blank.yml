@@ -7,7 +7,9 @@ permissions:
 
 jobs:
   lint-models:
+
     runs-on: self-hosted
+    
     steps:
       - name: checkout
         uses: actions/checkout@v2
